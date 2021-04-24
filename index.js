@@ -14,7 +14,7 @@ const port = process.env.PORT
 //   res.sendFile(path.join(__dirname, 'client/dist', 'index.html'))
 // })
 
-server.use('/', (req, res, next) => {
+server.use('/', (req, res) => {
   res.send({ message: "Welcome to our recipes api" })
 })
 

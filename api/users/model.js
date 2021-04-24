@@ -5,7 +5,12 @@ const findBy = query => {
     .where(query)
 }
 
+const add = async user => {
+  const [id] = await db('users').insert(user, 'id')
+  return findBy({ id }).first()
+}
+
 module.exports = {
   findBy,
-  
+  add
 }

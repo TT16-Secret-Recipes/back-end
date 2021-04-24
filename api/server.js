@@ -9,6 +9,11 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.use("api/auth", authRouter)
+//error handling middlware
+server.use((err, req, res, next) => {//eslint-disable-line
+  res.status(500).json({ error: err, message: err.message })
+})
+
+server.use("/api/auth", authRouter)
 
 module.exports = server
