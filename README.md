@@ -12,9 +12,8 @@ https://tt16-secret-recipes.herokuapp.com
   "username": "sample_user",
   "password": "password"
 }
-```
-responds with:
-```
+
+// responds with:
 { 
   "id": 5,
   "email": "s@mple.com",
@@ -31,9 +30,8 @@ responds with:
   "username": "sample_user",
   "password": "password"
 }
-```
-responds with:
-```
+
+// responds with:
 {
     "message": "Welcome back, sample_user!",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImdhcnJpY2siLCJlbWFpbCI6ImdAcnJpY2suY29tIiwiaWF0IjoxNjE5MzIwNzk1LCJleHAiOjE2MTkzMjE3OTV9.09z2GtvCx2dHipcI0JEryPlhEcoi1Y848facxvGjPtA"
