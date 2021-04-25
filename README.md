@@ -6,7 +6,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 ```
-/api/auth/register
+[POST] /api/auth/register
 {
   "email": "s@mple.com",
   "username": "sample_user",
@@ -23,8 +23,10 @@ responds with:
 }
 ```
 
+
+
 ```
-/api/auth/login
+[POST] /api/auth/login
 {
   "username": "sample_user",
   "password": "password"
@@ -39,8 +41,10 @@ responds with:
 // tokens expire after 15 minutes
 ```
 
+
+
 ```
-/api/users
+[GET] /api/users
 // set Header.Authorization to token
 // Accessible only by this logged in user
 {
@@ -50,8 +54,10 @@ responds with:
 // responds with list of users
 ```
 
+
+
 ```
-/api/users/:id
+[GET] /api/users/:id
 // Accessible by logged in users with matching id
 // set Header.Authorization to token
 // responds with user info
