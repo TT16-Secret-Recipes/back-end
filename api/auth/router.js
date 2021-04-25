@@ -21,7 +21,7 @@ router.post('/login', validate, authenticate, (req, res) => {
       email: user.email
     }
     const options = {
-      expiresIn: '10 seconds'
+      expiresIn: '1000 seconds'
     }
     const token = jwt.sign(payload, "KEEP IT SECRET", options)
     res.status(200).json({
