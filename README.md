@@ -6,7 +6,31 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 ```
-[GET] /api/recipes/:id
+[GET] /api/recipes/
+```
+```
+[
+  {
+    "id": 1,
+    "title": "Microwave Ramen",
+    "source": "Garrick's College Roommate",
+    "contributor": "garrick",
+    "categories": ["easy", "asian", "noodles"],
+    "description": "A very easy recipe for when you have no time to get your nightly dose of carbs, sodium, and MSG."
+  }, 
+  {
+    "id": 2,
+    "title": "Filipino Goulash",
+    "source": "Garrick's Mom",
+    "contributor": "garrick",
+    "categories": ["dinner", "filipino", "ground pork"],
+    "description": "Reminiscent of chili, this hearty dish goes well with steamed rice."
+  }
+]
+```
+```
+[GET] /api/recipes/:id 
+// restricted to contributing user
 ```
 ```
 {
@@ -14,7 +38,7 @@ https://tt16-secret-recipes.herokuapp.com
   "title": "Microwave Ramen",
   "source": "Garrick's College Roommate",
   "contributor": "garrick",
-  "categories": ["easy", "asian"],
+  "categories": ["easy", "asian", "noodles"],
   "description": "A very easy recipe for when you have no time to get your nightly dose of carbs, sodium, and MSG.",
   "ingredients": [
     {
