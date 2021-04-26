@@ -6,6 +6,15 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 ```
+[GET] /api/recipes
+```
+```
+{
+  "id":
+}
+```
+
+```
 [POST] /api/auth/register
 {
   "email": "s@mple.com",
