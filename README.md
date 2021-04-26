@@ -6,7 +6,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 ```
-[GET] /api/recipes
+[GET] /api/recipes/:id
 ```
 ```
 {
@@ -14,8 +14,8 @@ https://tt16-secret-recipes.herokuapp.com
   "title": "Microwave Ramen",
   "source": "Garrick's College Roommate",
   "contributor": "garrick",
-  "category": "Low Skills",
-  "description": "A very easy recipe when you have no time to get your nightly dose of carbs, sodium, and MSG.",
+  "categories": ["easy", "asian"],
+  "description": "A very easy recipe for when you have no time to get your nightly dose of carbs, sodium, and MSG.",
   "ingredients": [
     {
       "ingredient_id": 1,
