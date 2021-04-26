@@ -22,7 +22,7 @@ exports.up = function(knex) {
         .unsigned()
         .references('id')
         .inTable('sources')
-        .onDelete('RESTRICT')
+        .onDelete('CASCADE')
         .onUpdate('CASCADE')
     })
     .createTable('categories', tbl => {
