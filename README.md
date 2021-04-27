@@ -6,13 +6,13 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 
-[[GET] /api/recipes](#one)
-[[GET] /api/recipes/:id ](#two)
-[[POST] /api/recipes](#seven)
-[[POST] /api/auth/register](#three)
-[[POST] /api/auth/login](#four)
-[[GET] /api/users](#five)
-[[GET] /api/users/:id](#six)
+[[GET] /api/recipes](#one)  
+[[GET] /api/recipes/:id ](#two)  
+[[POST] /api/recipes](#seven)  
+[[POST] /api/auth/register](#three)  
+[[POST] /api/auth/login](#four)  
+[[GET] /api/users](#five)  
+[[GET] /api/users/:id](#six)  
 
 <a name="one">link</a>
 ```
