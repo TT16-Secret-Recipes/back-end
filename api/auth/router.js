@@ -26,6 +26,7 @@ router.post('/login', validate, authenticate, (req, res) => {
     const token = jwt.sign(payload, "KEEP IT SECRET", options)
     res.status(200).json({
       message: `Welcome back, ${user.username}!`,
+      user: { id: user.id, username: user.username, email: user.email },
       token
     })
   
