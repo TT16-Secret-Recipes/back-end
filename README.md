@@ -221,7 +221,12 @@ https://tt16-secret-recipes.herokuapp.com
 // responds with:
 {
     "message": "Welcome back, sample_user!",
-    "token": "eyJhbGc..."
+    "token": "eyJhbGc...",
+    "user": { 
+      "username": "sample_user",
+      "email": "s@mple.com",
+      "id": 1
+    }
 }
 // tokens expire after 15 minutes
 ```
