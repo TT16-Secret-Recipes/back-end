@@ -22,6 +22,29 @@ const getAll = async () => {
   }))
 }
 
+const getAllBy = async query => {
+  const recipes = await db('recipes as r')
+    .select('r.id', 'r.title', 's.source', 
+      'u.username as contributor', 'r.description', 
+      'r.image_url', 'u.id as user_id')
+    .join('sources as s', 's.id', 'r.source_id')
+    .join('users as u', 'u.id', 'r.user_id')
+    .where(query)
+  
+  return Promise.all(recipes.map(async recipe => {
+    const categories = await db('categories as c')
+      .select('c.category')
+      .join('recipe_categories as rc', 'rc.category_id', 'c.id')
+      .where({ recipe_id: recipe.id })
+
+    return {
+      ...recipe, 
+      categories: categories.map(category => category.category)
+    }
+    
+  }))
+}
+
 const getById = async recipe_id => {
   const recipe = await db('recipes as r')
   .select('r.id', 'r.title', 's.source', 
@@ -118,8 +141,22 @@ const insert = async (recipe) => {
   return getById(recipe_id)
 }
 
+const remove = async id => {
+  return db('recipes').where({ id }).del()
+}
+
+const update = async (id, recipe) => {
+  const number = await remove(id)
+  if(number){
+    return insert(recipe)
+  }
+}
+
 module.exports = {
   getAll,
+  getAllBy,
   getById,
-  insert
+  insert,
+  remove,
+  update
 }

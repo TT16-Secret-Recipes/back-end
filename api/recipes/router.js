@@ -18,6 +18,18 @@ router.get("/:id", checkRecipeExists, (req, res, next) => {
   }
 });
 
+router.delete("/:id", checkRecipeExists, (req, res, next) => {
+    Recipes.remove(req.params.id).then(recipe => {
+      res.status(200).json('Recipe has been deleted')
+    }).catch(next)
+  });
+
+  router.put("/:id", checkRecipeExists, (req, res, next) => {
+    Recipes.update(req.params.id, req.body).then(recipe => {
+      res.status(200).json(recipe)
+    }).catch(next)
+  });
+
 router.post("/", validateRecipe, (req, res, next) => {
   Recipes.insert(req.body)
     .then((recipe) => {
