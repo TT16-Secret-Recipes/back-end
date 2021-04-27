@@ -14,8 +14,8 @@ https://tt16-secret-recipes.herokuapp.com
 [[GET] /api/users](#five)
 [[GET] /api/users/:id](#six)
 
-<a name="one"/>
 ```
+<a name="one"/>
 [GET] /api/recipes/
 ```
 ```
@@ -39,8 +39,8 @@ https://tt16-secret-recipes.herokuapp.com
   }
 ]
 ```
-<a name="two"/>
 ```
+<a name="two"/>
 [GET] /api/recipes/:id 
 // restricted to contributing user
 ```
@@ -88,8 +88,8 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
-<a name="seven"/>
 ```
+<a name="seven"/>
 [POST] /api/recipes
 {
   "title": "Microwave Ramen",
@@ -131,8 +131,8 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
-<a name="three"/>
 ```
+<a name="three"/>
 [POST] /api/auth/register
 {
   "email": "s@mple.com",
@@ -151,8 +151,8 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
-<a name="four"/>
 ```
+<a name="four"/>
 [POST] /api/auth/login
 {
   "username": "sample_user",
@@ -169,8 +169,8 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
-<a name="five"/>
 ```
+<a name="five"/>
 [GET] /api/users
 // set Header.Authorization to token
 // Accessible only by this logged in user
@@ -183,8 +183,8 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
-<a name="six"/>
 ```
+<a name="six"/>
 [GET] /api/users/:id
 // Accessible by logged in users with matching id
 // set Header.Authorization to token
