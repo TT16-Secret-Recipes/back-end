@@ -5,14 +5,15 @@
 https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
-```
-[[GET] /api/recipes/](#one)
+
+[[GET] /api/recipes](#one)
 [[GET] /api/recipes/:id ](#two)
+[[POST] /api/recipes](#seven)
 [[POST] /api/auth/register](#three)
 [[POST] /api/auth/login](#four)
 [[GET] /api/users](#five)
 [[GET] /api/users/:id](#six)
-```
+
 ```
 <a name="one"/>
 [GET] /api/recipes/
@@ -61,6 +62,49 @@ https://tt16-secret-recipes.herokuapp.com
     },
     {
       "ingredient_id": 666,
+      "name": "packaged ramen",
+      "quantity": 1,
+      "unit": "package"
+    }
+  ],
+  "steps": [
+    {
+      "step_number": 1,
+      "instructions": "Put water in microwave safe container and heat on high for 5 minutes or until boiling."
+    },
+    {
+      "step_number": 2,
+      "instructions": "Open flavor packet, empty contents into water, and stir."  
+    },
+    {
+      "step_number": 3,
+      "instructions": "Place uncooked noodles into broth, cover, and let sit for 5 minutes.  You may heat it further in microwave, stirring occasionally."
+    },
+    {
+      "step_number": 4,
+      "instructions": "Allow to cool safely and enjoy."
+    }
+  ]
+}
+```
+
+```
+<a name="seven"/>
+[POST] /api/recipes
+{
+  "title": "Microwave Ramen",
+  "image_url": "something.com",
+  "source": "Garrick's College Roommate",
+  "user_id": 1,
+  "categories": ["easy", "asian", "noodles"],
+  "description": "A very easy recipe for when you have no time to get your nightly dose of carbs, sodium, and MSG.",
+  "ingredients": [
+    {
+      "name": "water",
+      "quantity": 2,
+      "unit": "cup"
+    },
+    {
       "name": "packaged ramen",
       "quantity": 1,
       "unit": "package"
