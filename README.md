@@ -14,7 +14,7 @@ https://tt16-secret-recipes.herokuapp.com
 [[GET] /api/users](#five)
 [[GET] /api/users/:id](#six)
 
-<a name="one">link</a>
+<a name="one">Get all Recipes Summaries</a>
 ```
 [GET] /api/recipes/
 ```
@@ -39,7 +39,7 @@ https://tt16-secret-recipes.herokuapp.com
   }
 ]
 ```
-<a name="two">link</a>
+<a name="two">Get Full Recipe</a>
 ```
 [GET] /api/recipes/:id 
 // restricted to contributing user
@@ -88,7 +88,7 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
-<a name="seven">link</a>
+<a name="seven">Submit recipe</a>
 ```
 [POST] /api/recipes
 {
@@ -131,7 +131,7 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
-<a name="three">link</a>
+<a name="three">Register</a>
 ```
 [POST] /api/auth/register
 {
@@ -151,7 +151,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
-<a name="four">link</a>
+<a name="four">Log in</a>
 ```
 [POST] /api/auth/login
 {
@@ -162,14 +162,14 @@ https://tt16-secret-recipes.herokuapp.com
 // responds with:
 {
     "message": "Welcome back, sample_user!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImdhcnJpY2siLCJlbWFpbCI6ImdAcnJpY2suY29tIiwiaWF0IjoxNjE5MzIwNzk1LCJleHAiOjE2MTkzMjE3OTV9.09z2GtvCx2dHipcI0JEryPlhEcoi1Y848facxvGjPtA"
+    "token": "eyJhbGc..."
 }
 // tokens expire after 15 minutes
 ```
 
 
 
-<a name="five">link</a>
+<a name="five">Get list of users</a>
 ```
 [GET] /api/users
 // set Header.Authorization to token
@@ -183,7 +183,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
-<a name="six">link</a>
+<a name="six">Get one user</a>
 ```
 [GET] /api/users/:id
 // Accessible by logged in users with matching id
