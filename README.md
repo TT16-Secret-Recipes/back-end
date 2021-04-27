@@ -21,6 +21,7 @@ https://tt16-secret-recipes.herokuapp.com
   {
     "id": 2,
     "title": "Filipino Goulash",
+    "image_url": 'something.com',
     "source": "Garrick's Mom",
     "contributor": "garrick",
     "categories": ["dinner", "filipino", "ground pork"],
@@ -36,6 +37,7 @@ https://tt16-secret-recipes.herokuapp.com
 {
   "id": 1,
   "title": "Microwave Ramen",
+  "image_url": 'something.com',
   "source": "Garrick's College Roommate",
   "contributor": "garrick",
   "categories": ["easy", "asian", "noodles"],
