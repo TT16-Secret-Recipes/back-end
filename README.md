@@ -6,6 +6,15 @@ https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
 ```
+[[GET] /api/recipes/](#one)
+[[GET] /api/recipes/:id ](#two)
+[[POST] /api/auth/register](#three)
+[[POST] /api/auth/login](#four)
+[[GET] /api/users](#five)
+[[GET] /api/users/:id](#six)
+```
+```
+<a name="one"/>
 [GET] /api/recipes/
 ```
 ```
@@ -30,6 +39,7 @@ https://tt16-secret-recipes.herokuapp.com
 ]
 ```
 ```
+<a name="two"/>
 [GET] /api/recipes/:id 
 // restricted to contributing user
 ```
@@ -78,6 +88,7 @@ https://tt16-secret-recipes.herokuapp.com
 ```
 
 ```
+<a name="three"/>
 [POST] /api/auth/register
 {
   "email": "s@mple.com",
@@ -97,6 +108,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 ```
+<a name="four"/>
 [POST] /api/auth/login
 {
   "username": "sample_user",
@@ -114,6 +126,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 ```
+<a name="five"/>
 [GET] /api/users
 // set Header.Authorization to token
 // Accessible only by this logged in user
@@ -127,6 +140,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 ```
+<a name="six"/>
 [GET] /api/users/:id
 // Accessible by logged in users with matching id
 // set Header.Authorization to token
