@@ -4,19 +4,14 @@ const find = () => {
   return db('users')
 }
 
-const findBy = query => {
+const findBy = query => { 
   return db('users')
     .select('id', 'email', 'username')
     .where(query)
 }
 
-const add = async user => {
-  const [id] = await db('users').insert(user, 'id')
-  return findBy({ id }).first()
-}
 
 module.exports = {
   find,
-  findBy,
-  add
+  findBy
 }

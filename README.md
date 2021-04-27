@@ -9,10 +9,15 @@ https://tt16-secret-recipes.herokuapp.com
 [[GET] /api/recipes](#one)  
 [[GET] /api/recipes/:id ](#two)  
 [[POST] /api/recipes](#seven)  
+[[PUT] /api/recipes/:id ](#nine)  
+[[DELETE] /api/recipes/:id ](#ten) 
+
 [[POST] /api/auth/register](#three)  
-[[POST] /api/auth/login](#four)  
+[[POST] /api/auth/login](#four) 
+
 [[GET] /api/users](#five)  
 [[GET] /api/users/:id](#six)  
+[[GET] /api/users/:id/recipes](#eight)  
 
 <a name="one">Get all Recipes Summaries</a>
 ```
@@ -131,6 +136,60 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
+<a name="nine">Update Recipe</a>
+```
+[PUT] /api/recipes/:id 
+{
+  "title": "Microwave Ramen",
+  "image_url": "something.com",
+  "source": "Garrick's College Roommate",
+  "user_id": 1,
+  "categories": ["easy", "microwave", "noodles"],
+  "description": "A recipe so fast and easy for when you have no time to get your nightly dose of carbs, sodium, and MSG.",
+  "ingredients": [
+    {
+      "name": "water",
+      "quantity": 4,
+      "unit": "cup"
+    },
+    {
+      "name": "instant ramen noodles",
+      "quantity": 2,
+      "unit": "package"
+    }
+  ],
+  "steps": [
+    {
+      "step_number": 1,
+      "instructions": "Put water in microwave safe container and heat on high for 5 minutes or until boiling."
+    },
+    {
+      "step_number": 2,
+      "instructions": "Open flavor packet, empty contents into water, and stir."  
+    },
+    {
+      "step_number": 3,
+      "instructions": "Place uncooked noodles into broth, cover, and let sit for 5 minutes.  You may heat it further in microwave, stirring occasionally."
+    },
+    {
+      "step_number": 4,
+      "instructions": "Allow to cool safely and enjoy."
+    }
+  ]
+}
+//response is updated object
+```
+
+
+<a name="ten">Delete this recipe</a>
+```
+[DELETE] /api/recipes/:id
+// response
+{
+  "Recipe has been deleted"
+}
+```
+
 <a name="three">Register</a>
 ```
 [POST] /api/auth/register
@@ -189,4 +248,9 @@ https://tt16-secret-recipes.herokuapp.com
 // Accessible by logged in users with matching id
 // set Header.Authorization to token
 // responds with user info
+```
+
+<a name="eight">Get all recipes from one user</a>
+```
+[GET] /api/users/:id/recipes
 ```
