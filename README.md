@@ -5,6 +5,16 @@
 https://tt16-secret-recipes.herokuapp.com
 
 ## Endpoints
+
+[[GET] /api/recipes](#one)  
+[[GET] /api/recipes/:id ](#two)  
+[[POST] /api/recipes](#seven)  
+[[POST] /api/auth/register](#three)  
+[[POST] /api/auth/login](#four)  
+[[GET] /api/users](#five)  
+[[GET] /api/users/:id](#six)  
+
+<a name="one">Get all Recipes Summaries</a>
 ```
 [GET] /api/recipes/
 ```
@@ -21,6 +31,7 @@ https://tt16-secret-recipes.herokuapp.com
   {
     "id": 2,
     "title": "Filipino Goulash",
+    "image_url": 'something.com',
     "source": "Garrick's Mom",
     "contributor": "garrick",
     "categories": ["dinner", "filipino", "ground pork"],
@@ -28,6 +39,7 @@ https://tt16-secret-recipes.herokuapp.com
   }
 ]
 ```
+<a name="two">Get Full Recipe</a>
 ```
 [GET] /api/recipes/:id 
 // restricted to contributing user
@@ -36,6 +48,7 @@ https://tt16-secret-recipes.herokuapp.com
 {
   "id": 1,
   "title": "Microwave Ramen",
+  "image_url": 'something.com',
   "source": "Garrick's College Roommate",
   "contributor": "garrick",
   "categories": ["easy", "asian", "noodles"],
@@ -75,6 +88,50 @@ https://tt16-secret-recipes.herokuapp.com
 }
 ```
 
+<a name="seven">Submit recipe</a>
+```
+[POST] /api/recipes
+{
+  "title": "Microwave Ramen",
+  "image_url": "something.com",
+  "source": "Garrick's College Roommate",
+  "user_id": 1,
+  "categories": ["easy", "asian", "noodles"],
+  "description": "A very easy recipe for when you have no time to get your nightly dose of carbs, sodium, and MSG.",
+  "ingredients": [
+    {
+      "name": "water",
+      "quantity": 2,
+      "unit": "cup"
+    },
+    {
+      "name": "packaged ramen",
+      "quantity": 1,
+      "unit": "package"
+    }
+  ],
+  "steps": [
+    {
+      "step_number": 1,
+      "instructions": "Put water in microwave safe container and heat on high for 5 minutes or until boiling."
+    },
+    {
+      "step_number": 2,
+      "instructions": "Open flavor packet, empty contents into water, and stir."  
+    },
+    {
+      "step_number": 3,
+      "instructions": "Place uncooked noodles into broth, cover, and let sit for 5 minutes.  You may heat it further in microwave, stirring occasionally."
+    },
+    {
+      "step_number": 4,
+      "instructions": "Allow to cool safely and enjoy."
+    }
+  ]
+}
+```
+
+<a name="three">Register</a>
 ```
 [POST] /api/auth/register
 {
@@ -94,6 +151,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
+<a name="four">Log in</a>
 ```
 [POST] /api/auth/login
 {
@@ -104,13 +162,14 @@ https://tt16-secret-recipes.herokuapp.com
 // responds with:
 {
     "message": "Welcome back, sample_user!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImdhcnJpY2siLCJlbWFpbCI6ImdAcnJpY2suY29tIiwiaWF0IjoxNjE5MzIwNzk1LCJleHAiOjE2MTkzMjE3OTV9.09z2GtvCx2dHipcI0JEryPlhEcoi1Y848facxvGjPtA"
+    "token": "eyJhbGc..."
 }
 // tokens expire after 15 minutes
 ```
 
 
 
+<a name="five">Get list of users</a>
 ```
 [GET] /api/users
 // set Header.Authorization to token
@@ -124,6 +183,7 @@ https://tt16-secret-recipes.herokuapp.com
 
 
 
+<a name="six">Get one user</a>
 ```
 [GET] /api/users/:id
 // Accessible by logged in users with matching id
