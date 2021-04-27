@@ -51,6 +51,7 @@ const insert = async (recipe) => {
   const { source, categories, steps, ingredients } = recipe
   let recipe_id;
   await db.transaction(async trx => {
+    // insert source
     let source_id
     const [existing_source] = await trx('sources').where({ source })
     if (existing_source) {
@@ -60,6 +61,7 @@ const insert = async (recipe) => {
       source_id = id
     }
     
+    // insert categories
     const category_ids = await Promise.all(categories.map(async category => {
       let category_id
       const [existing_category] = await trx('categories')
@@ -74,22 +76,26 @@ const insert = async (recipe) => {
       return category_id
     }))
 
+    // insert recipe
     const { description, title, image_url, user_id } = recipe
     const [{ id }] = await trx('recipes')
       .insert({ description, title, image_url, source_id, user_id }, ['id'])
     
     recipe_id = id
     
+    // insert recipe_categories
     await Promise.all(category_ids.map(category_id => {
       return trx('recipe_categories')
         .insert({ category_id, recipe_id })
     }))  
     
+    // insert steps
     await Promise.all(steps.map(step => {
       return trx('steps')
         .insert({ recipe_id, ...step })
     }))
     
+    // insert recipe_ingredients
     await Promise.all(ingredients.map(async ingredient => {
       const { name } = ingredient;
       let ingredient_id
