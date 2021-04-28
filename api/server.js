@@ -23,6 +23,6 @@ server.use(express.static('public'))
 server.use("/api/auth", authRouter)
 server.use("/api/recipes", recipesRouter)
 server.use("/api/users", restricted(), usersRouter)
-server.use("/api/upload", uploadRouter)
+server.use("/api/upload", restricted(), uploadRouter)
 
 module.exports = server

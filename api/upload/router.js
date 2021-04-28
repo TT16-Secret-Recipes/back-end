@@ -2,6 +2,8 @@ const express = require('express')
 const db = require('../data/db-config')
 const router = express.Router()
 const fileUpload = require('express-fileupload')
+const {checkRecipeExists} = require('../recipes/middlewares')
+const restricted = require('../auth/restricted')
 
 router.use(fileUpload());
 
@@ -23,11 +25,11 @@ router.post('/', (req, res) => {
   });
 });
 
-router.post('/recipe_images/:recipe_id', (req, res) => {
+router.post('/recipe_images/:id', checkRecipeExists, restricted('recipe_user'), (req, res) => {
   if (req.files === null) {
     return res.status(400).json({ msg: 'No file uploaded' });
   }
-  const id = req.params.recipe_id
+  const { id } = req.recipe
   const file = req.files.file;
   // reject non images
   const re = /jpg|jpeg|gif|png/i
@@ -38,13 +40,13 @@ router.post('/recipe_images/:recipe_id', (req, res) => {
   if(file.size > 1000000){
     return res.status(400).json({ message: "File Size Limit: 1 MB"})
   }
-
-  file.mv(`${__dirname}/../../public/images/recipes/${file.name}`, async err => {
+  const filename = id + '.' + file.name.split('.').pop()
+  file.mv(`${__dirname}/../../public/images/recipes/${filename}`, async err => {
     if (err) {
       console.error(err);
       return res.status(500).send(err);
     }
-    const filename = id + '.' + file.name.split('.').pop()
+    
     //add filename/url to db
     const recipe = await db('recipes').where({ id }).update({ image_url: `/images/recipes/${filename}` })
     console.log(recipe)

@@ -21,13 +21,17 @@ module.exports = restrictedBy => (req, res, next) => {
             if (decoded.username !== 'garrick')
               message = 'Admins only'
             break;
-
+          case 'recipe_user':
+            if(decoded.username !== req.recipe.contributor)
+              message = 'You can only see and/or edit your own recipes'
+            break;
           default:
             message = 'Access Restricted'
         }
-
+        // if restricted send status 401
         if (message) {
           res.status(401).json({ message })
+
         } else {
           req.decodedToken = decoded
           next()
