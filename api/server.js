@@ -19,6 +19,7 @@ server.use((err, req, res, next) => {//eslint-disable-line
   res.status(500).json({ error: err, message: err.message })
 })
 
+server.use(express.static('public'))
 server.use("/api/auth", authRouter)
 server.use("/api/recipes", recipesRouter)
 server.use("/api/users", restricted(), usersRouter)
