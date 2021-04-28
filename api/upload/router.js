@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
       return res.status(500).send(err);
     }
 
-    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+    res.json({ fileName: file.name, filePath: `/images/${file.name}` });
   });
 });
 
