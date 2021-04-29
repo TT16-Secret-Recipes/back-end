@@ -151,8 +151,8 @@ const update = async (id, recipe) => {
 
   await db.transaction(async trx => {
     // insert source
+    let source_id
     if (source) {  
-      let source_id
       const [existing_source] = await trx('sources').where({ source })
       if (existing_source) {
         source_id = existing_source.id
@@ -219,7 +219,7 @@ const update = async (id, recipe) => {
       if (existing_ingredient) {
         ingredient_id = existing_ingredient.id
         updated = await trx('recipe_ingredients')
-          .where({ recipe_id, ingredient_id })
+          .where({ recipe_id: id, ingredient_id })
           .update({ quantity, unit })
       } else {
         const [{ id }] = await trx('ingredients')
