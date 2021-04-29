@@ -70,7 +70,7 @@ const getById = async recipe_id => {
   }
 }
 
-const insert = async (recipe) => {
+const insert = async (user_id, recipe) => {
   const { source, categories, steps, ingredients } = recipe
   let recipe_id;
   await db.transaction(async trx => {
@@ -100,7 +100,7 @@ const insert = async (recipe) => {
     }))
 
     // insert recipe
-    const { description, title, image_url, user_id } = recipe
+    const { description, title, image_url } = recipe
     const [{ id }] = await trx('recipes')
       .insert({ description, title, image_url, source_id, user_id }, ['id'])
     

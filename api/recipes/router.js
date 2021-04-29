@@ -34,7 +34,7 @@ router.delete("/:id", (req, res, next) => {
   });
 
 router.post("/", restricted(), validateRecipe, (req, res, next) => {
-  Recipes.insert(req.body)
+  Recipes.insert(req.decodedToken.subject, req.body)
     .then((recipe) => {
       res.status(201).json(recipe);
     })
