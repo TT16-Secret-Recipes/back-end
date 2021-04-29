@@ -14,25 +14,25 @@ exports.seed = async function (knex) {
   ]);
   await knex("ingredients").insert([
     { name: "cheese"}, //1
-    { name: "sauce" }, //3
-    { name: "salt" }, //4
-    { name: "soy" }, //5
-    { name: "flour" }, //6
-    { name: "beef" }, //7
-    { name: "chopped mushrooms" }, //8
-    { name: "coconut oil" }, //9
-    { name: "bread crumbs" }, //10
-    { name: "italian parsley, finely chopped" },  //11
+    { name: "sauce" }, //2
+    { name: "salt" }, //3
+    { name: "soy" }, //4
+    { name: "flour" }, //5
+    { name: "beef" }, //6
+    { name: "chopped mushrooms" }, //7
+    { name: "coconut oil" }, //8
+    { name: "bread crumbs" }, //9
+    { name: "italian parsley, finely chopped" },  //10
   ]);
   await knex("recipe_ingredients").insert([
     { quantity: 4, unit: "cups", recipe_id: 1, ingredient_id: 1 },
     { quantity: 10, unit: "bowls", recipe_id: 1, ingredient_id: 2 },
     { quantity: 2, unit: "cups", recipe_id: 2, ingredient_id: 3 },
     { quantity: 99999, unit: "mg", recipe_id: 3, ingredient_id: 6 },
-    { quantity: 1, unit: "lb", recipe_id: 4, ingredient_id: 8 },
-    { quantity: 2, unit: "tbsp", recipe_id: 4, ingredient_id: 9 },
-    { quantity: 2, unit: "cups", recipe_id: 4, ingredient_id: 10 },
-    { quantity: .25, unit: "cup", recipe_id: 4, ingredient_id: 11 },
+    { quantity: 1, unit: "lb", recipe_id: 4, ingredient_id: 7 },
+    { quantity: 2, unit: "tbsp", recipe_id: 4, ingredient_id: 8 },
+    { quantity: 2, unit: "cups", recipe_id: 4, ingredient_id: 9 },
+    { quantity: .25, unit: "cup", recipe_id: 4, ingredient_id: 10 },
     { quantity: 1, unit: "tsp", recipe_id: 4, ingredient_id: 4 },
   ]);
 };
