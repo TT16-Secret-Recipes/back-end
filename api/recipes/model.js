@@ -146,10 +146,100 @@ const remove = async id => {
 }
 
 const update = async (id, recipe) => {
-  const number = await remove(id)
-  if(number){
-    return insert(recipe)
-  }
+  
+  const { source, categories, steps, ingredients } = recipe
+
+  await db.transaction(async trx => {
+    // insert source
+    if (source) {  
+      let source_id
+      const [existing_source] = await trx('sources').where({ source })
+      if (existing_source) {
+        source_id = existing_source.id
+      } else {
+        let [{ id }] = await trx('sources').insert({ source }, ['id'])
+        source_id = id
+      }
+    }
+
+    if (categories && categories.length > 0){  
+      // insert categories track ids
+      const category_ids = await Promise.all(categories.map(async category => {
+        let category_id
+        const [existing_category] = await trx('categories')
+          .where({ category })
+        if (existing_category) {
+          category_id = existing_category.id
+        } else {
+          let [{ id }] = await trx('categories')
+            .insert({ category }, ['id'])
+          category_id = id
+        }
+        return category_id
+      }))
+
+      // recipe_categories
+      await trx('recipe_categories')
+        .where({ recipe_id: id })
+        .del()
+
+      await trx('recipe_categories')
+        .insert(category_ids.map(category_id => { 
+          return { category_id, recipe_id: id }  
+        }))
+    }
+
+    // update recipe
+    const { description, title, image_url, user_id } = recipe
+    await trx('recipes')
+      .where({ id })
+      .update({ description, title, image_url, source_id, user_id })
+
+    // steps
+    if (steps && steps.length > 0) {
+      steps.map(({step_number, instructions}) => {
+        return trx('steps')
+          .where({ recipe_id: id, step_number})
+          .update({ instructions })
+      })
+
+      await trx('steps')
+        .where('step_number', '>', steps.length)
+        .del()
+    }
+
+    //recipe_ingredients
+    const ingredient_ids = await Promise.all(ingredients.map(async ingredient => {
+      const { name, quantity, unit } = ingredient;
+      let ingredient_id
+      const [existing_ingredient] = await trx('ingredients')
+        .where({ name })
+
+      let updated
+      if (existing_ingredient) {
+        ingredient_id = existing_ingredient.id
+        updated = await trx('recipe_ingredients')
+          .where({ recipe_id, ingredient_id })
+          .update({ quantity, unit })
+      } else {
+        const [{ id }] = await trx('ingredients')
+          .insert({ name }, ['id'])
+        ingredient_id = id
+      }
+      
+      if (!updated) {
+        await trx('recipe_ingredients')
+          .insert({ recipe_id: id, ingredient_id, quantity, unit })
+      }
+      return ingredient_id
+    }))
+    await trx('recipe_ingredients')
+      .where({ recipe_id: id })
+      .andWhereNotIn('ingredient_id', ingredient_ids)
+      .del()
+  })
+
+  return getById(id)
 }
 
 module.exports = {
