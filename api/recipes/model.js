@@ -190,26 +190,29 @@ const update = async (id, recipe) => {
     }
 
     // update recipe
-    const { description, title, image_url, user_id } = recipe
+    const { description, title, image_url } = recipe
     await trx('recipes')
       .where({ id })
-      .update({ description, title, image_url, source_id, user_id })
+      .update({ description, title, image_url, source_id })
 
     // steps
     if (steps && steps.length > 0) {
+      // update steps with instructions
       steps.map(({step_number, instructions}) => {
         return trx('steps')
           .where({ recipe_id: id, step_number})
           .update({ instructions })
       })
 
+      // delete extra steps
       await trx('steps')
         .where('step_number', '>', steps.length)
         .del()
     }
 
     //recipe_ingredients
-    const ingredient_ids = await Promise.all(ingredients.map(async ingredient => {
+    if (ingredients && ingredients.length > 0) {
+      const ingredient_ids = await Promise.all(ingredients.map(async ingredient => {
       const { name, quantity, unit } = ingredient;
       let ingredient_id
       const [existing_ingredient] = await trx('ingredients')
@@ -235,8 +238,9 @@ const update = async (id, recipe) => {
     }))
     await trx('recipe_ingredients')
       .where({ recipe_id: id })
-      .andWhereNotIn('ingredient_id', ingredient_ids)
+      .whereNotIn('ingredient_id', ingredient_ids)
       .del()
+    }
   })
 
   return getById(id)
