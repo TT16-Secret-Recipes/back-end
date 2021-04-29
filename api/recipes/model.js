@@ -11,7 +11,8 @@ const getAll = async () => {
       "r.image_url"
     )
     .join("sources as s", "s.id", "r.source_id")
-    .join("users as u", "u.id", "r.user_id");
+    .join("users as u", "u.id", "r.user_id")
+    .orderBy("r.id");
 
   return Promise.all(
     recipes.map(async (recipe) => {
