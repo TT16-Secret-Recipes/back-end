@@ -17,14 +17,14 @@ exports.seed = async function (knex) {
       user_id: 1,
       source_id: 2,
       description: "really yummy dish",
-      image_url: "https://bit.ly/3xu1asr",
+      image_url: "/images/recipes/1.jpg",
     },
     {  //2
       title: "SALAD Recipe",
       user_id: 2,
       source_id: 1,
       description: "Great for greenery dish",
-      image_url: "https://bit.ly/3xu1asr",
+      image_url: "/images/recipes/2.jpg",
     },
     {  //3
       title: "Meatballs",
