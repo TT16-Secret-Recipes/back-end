@@ -8,6 +8,9 @@ const authRouter = require('./auth/router')
 const usersRouter = require('./users/router')
 const recipesRouter = require('./recipes/router')
 const uploadRouter = require('./upload/router')
+const sourcesRouter = require('./sources/router')
+const categoriesRouter = require('./categories/router')
+const ingredientsRouter = require('./ingredients/router')
 
 const server = express()
 server.use(express.json())
@@ -24,5 +27,8 @@ server.use("/api/auth", authRouter)
 server.use("/api/recipes", recipesRouter)
 server.use("/api/users", restricted(), usersRouter)
 server.use("/api/upload", restricted(), uploadRouter)
+server.use("/api/sources", restricted(), sourcesRouter)
+server.use("/api/categories", restricted(), categoriesRouter)
+server.use("/api/ingredients", restricted(), ingredientsRouter)
 
 module.exports = server

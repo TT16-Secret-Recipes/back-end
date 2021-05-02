@@ -17,7 +17,13 @@ https://tt16-secret-recipes.herokuapp.com
 
 [[GET] /api/users](#five)  
 [[GET] /api/users/:id](#six)  
-[[GET] /api/users/:id/recipes](#eight)  
+[[GET] /api/users/:id/recipes](#eight)
+
+[[GET] /api/sources](#twelve)
+[[GET] /api/categories](#thirteen)
+[[GET] /api/ingredients](#fourteen)
+
+[[POST] /api/upload/recipe_images/:id](#eleven)
 
 <a name="one">Get all Recipes Summaries</a>
 ```
@@ -258,4 +264,18 @@ https://tt16-secret-recipes.herokuapp.com
 <a name="eight">Get all recipes from one user</a>
 ```
 [GET] /api/users/:id/recipes
+```
+
+<a name="thirteen"></a>
+<a name="fourteen"></a>
+<a name="twelve">Get a list of recipe resources</a>
+```
+[GET] /api/sources
+[GET] /api/categories
+[GET] /api/ingredients
+```
+
+<a name="eleven">Upload and image for recipe</a>
+```
+[POST] /api/upload/recipe_images/:id
 ```
