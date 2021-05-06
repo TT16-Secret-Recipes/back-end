@@ -50,7 +50,7 @@ router.post('/recipe_images/:id', checkRecipeExists, restricted('recipe_user'), 
     //add filename/url to db
     const recipe = await db('recipes').where({ id }).update({ image_url: `/images/recipes/${filename}` })
     console.log(recipe)
-    res.json({ fileName: file.name, filePath: `/images/recipes/${filename}` });
+    res.json({ fileName: filename, filePath: `/images/recipes/${filename}` });
   });
 });
 
