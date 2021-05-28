@@ -233,14 +233,24 @@ const update = async (id, recipe) => {
     // steps
     if (steps && steps.length > 0) {
       // update steps with instructions
-      steps.map(({ step_number, instructions }) => {
-        return trx("steps")
+      steps.map(async ({ step_number, instructions }) => {
+        const [step] = await trx("steps")
           .where({ recipe_id: id, step_number })
-          .update({ instructions });
+        if (step){
+          return trx("steps")
+            .where({ recipe_id: id, step_number })
+            .update({ instructions });
+        } else {
+          return trx("steps")
+            .insert({ step_number, instructions, recipe_id: id })
+        }
       });
 
       // delete extra steps
-      await trx("steps").where("step_number", ">", steps.length).del();
+      await trx("steps")
+        .where({ recipe_id: id, })
+        .andWhere("step_number", ">", steps.length)
+        .del();
     }
 
     //recipe_ingredients
