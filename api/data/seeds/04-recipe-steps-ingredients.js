@@ -4,9 +4,9 @@ exports.seed = async function (knex) {
   await knex("steps").del();
 
   await knex("steps").insert([
-    { instructions: "Fry Pan", step_number: 1, recipe_id: 2 },
-    { instructions: "Mix in bowl", step_number: 2, recipe_id: 2 },
-    { instructions: "Fry Pan", step_number: 1, recipe_id: 2 },
+    { instructions: "Cut vegetables and mix-ins", step_number: 1, recipe_id: 2 },
+    { instructions: "Mix ingredients in bowl", step_number: 2, recipe_id: 2 },
+    { instructions: "Dress and season", step_number: 3, recipe_id: 2 },
     { instructions: "Saute mushrooms under low heat with coconut oil", step_number: 1, recipe_id: 4 },
     { instructions: "Combine with bread crumbs, salt, and italian parsley.  Add a little vegetable broth if too dry", step_number: 2, recipe_id: 4 },
     { instructions: "Form into 1 inch balls", step_number: 3, recipe_id: 4 },
